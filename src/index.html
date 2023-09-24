@@ -2,19 +2,98 @@
 <head>
 <style type="text/css">
 
-[data-type="Resource"] {
-  background-color: hsl(90.48deg 66.67% 83.53%);
-    border: 1px solid #a1e064;
+.cardList {
+  display: flex;
+  /* justify-content: space-evenly; */
+  margin: 0 auto;
+  overflow-x: auto;
+}
+.card {
+  margin: 0 10px;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  flex-basis: 20%;
 }
 
-[data-type="Action"] {
-  background-color: hsl(230.48deg 66.67% 83.53%);
-  border-color: hsl(230.48deg 66.67% 63.53%);
+
+[data-type="Resource"] {
+  background-color: hsl(90.48deg 66.67% 83.53%) !important;
+}
+
+.actions {
+  padding-top: 1em;
+  display: flex;
+}
+
+.actions button {
+  flex-grow: 1;
+}
+
+hr {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+  margin: 0;
+}
+
+.card-container {
+  background: #fff;
+  opacity: 0.9;
+  flex-grow: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lua-modal-container {
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.lua-modal {
+  background: #eee;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  max-height: 75vh;
+  overflow-y: auto;
+  z-index: 500;
+  padding: 20px;
+  max-width: 50vw;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.lua-modal pre {
+  padding: 10px;
+  border: 1px solid black;
+  white-space: break-spaces;
+}
+
+.lua-modal-container::after {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background: #000;
+  opacity: 0.8;
 }
 
 </style>
 </head>
-<body>
+<body style="overflow: hidden;">
     <h1>Test</h1>
     <script src="/main.bundle.js"></script>
 </body>

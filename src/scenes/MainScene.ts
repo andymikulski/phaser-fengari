@@ -1,51 +1,114 @@
-import Phaser from 'phaser';
+// import Phaser from 'phaser';
+// import { CardEvents } from '../CardEvents';
+// import { actionCardLua, resourceCardLua } from '../resourceCardLua';
+// import { Card } from './Card';
+// import { Deck } from './Deck';
+// import { IGameAPI } from './IGameAPI';
+// const cardTypes = {
+//   'resource': resourceCardLua,
+//   'action': actionCardLua,
+// };
 
-const NUM_MARIOS = 10;
-export default class MainScene extends Phaser.Scene {
-  private marios: Phaser.GameObjects.Image[] = [];
+// class Game implements IGameAPI {
+//   drawPile: Deck = new Deck();
+//   hand: Deck = new Deck();
+//   cardsInPlay: Deck = new Deck();
 
-  preload = () => {
-    this.load.image('mario', 'https://i.imgur.com/nKgMvuj.png');
-    this.load.image('background', 'https://i.imgur.com/dzpw15B.jpg');
-  };
-  create = () => {
-    this.add.text(0,0,'Main Scene - no physics', {color: '#fff', fontSize: '16px'});
+//   addToPlaySpace(card: Card): void {
+//     this.cardsInPlay.add(card);
+//   }
 
-    this.add.image(0, 0, 'background')
-      .setOrigin(0, 0) // Anchor to top left so (0,0) is flush against the corner
-      .setDisplaySize(1024, 768) // Fit background image to window
-      .setDepth(-1); // Behind everything
+//   removeFromHand(card: Card): void {
+//     this.hand.removeCard(card);
+//   }
 
-    let mario;
-    for (let i = 0; i < NUM_MARIOS; i++) {
-      mario = this.add.image(32, 32, 'mario')
-        .setData('velocity', { x: Math.random() * 500, y: Math.random() * 500 })
-        .setDisplaySize(32, 32);
+//   discard(card: Card): void {
+//     this.hand.discard(card);
+//   }
 
-      this.marios.push(mario);
-    }
-  };
+//   spendPlayerResources(amount: number): void {
+//     let found: Card[] = [];
+//     let foundCount = 0;
+//     this.cardsInPlay.cards.forEach((card) => {
+//       if (foundCount >= amount) {
+//         return;
+//       }
+//       if (card.getName() === "Resource") {
+//         foundCount += 1;
+//         found.push(card);
+//       }
+//     });
 
-  update = (time: number, delta: number) => {
-    // do something every tick here
-    let mario;
-    let velocity;
-    for (let i = 0; i < this.marios.length; i++) {
-      mario = this.marios[i];
-      velocity = mario.getData('velocity') as {x:number; y:number;};
+//     found.forEach(card => {
+//       this.cardsInPlay.removeCard(card);
+//       card.triggerEvent(CardEvents.ResourceSpent);
+//     });
+//   }
 
-      // Move the thing
-      mario.x += velocity.x * delta * 0.001;
-      mario.y += velocity.y * delta * 0.001;
+//   getNumResources(): number {
+//     return this.cardsInPlay.countType('Resource');
+//   }
 
-      // Check if we hit a boundary and bounce
-      if (mario.x > 1024 || mario.x < 0){
-        velocity.x *= -1;
-      }
-      if (mario.y > 768 || mario.y < 0){
-        velocity.y *= -1;
-      }
-      mario.setData('velocity', velocity)
-    }
-  }
-}
+//   public setup = () => {
+//     for (let i = 0; i < 5; i++) {
+//       this.drawCard();
+//     }
+//   }
+
+//   public drawCard = () => {
+//     var c = new Card(this, Math.random() > 0.5 ? cardTypes.resource : cardTypes.action);
+//     this.hand.add(c);
+//     c.triggerEvent(CardEvents.CardDrawn);
+//   }
+
+//   public stepTurn = () => {
+//     this.hand.dispatchEvent(CardEvents.TurnStart);
+//     this.cardsInPlay.dispatchEvent(CardEvents.TurnStart);
+//   }
+
+//   public playCard = (card: Card) => {
+//     if (!card.checkCanBePlayed()) {
+//       return;
+//     }
+//     this.hand.removeCard(card);
+//     card.triggerEvent(CardEvents.CardPlayed);
+//   }
+
+//   public discardAtRandom = () => {
+//     this.hand.discardRandom();
+//   }
+
+
+
+//   /// for TESTING
+
+
+//   public fakeTurn = () => {
+//     console.log('NEW TURN');
+//     let actionCount = 1;
+
+//     while (actionCount > 0) {
+//       actionCount -= 1;
+
+//       if (this.hand.getNumCards() > 0) {
+//         let card = this.hand.getFirstType("Resource") ?? this.hand.getRandomCard();
+//         if (!card.checkCanBePlayed()) {
+//           this.drawCard();
+//         } else {
+//           this.playCard(card);
+//         }
+//       } else {
+//         this.drawCard();
+//       }
+//     }
+
+//     while (this.hand.getNumCards() > 5) {
+//       this.discardAtRandom();
+//     }
+
+//     this.stepTurn();
+//   };
+
+// }
+
+

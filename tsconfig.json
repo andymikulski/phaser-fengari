@@ -6,6 +6,7 @@
     "module": "commonjs",
     "target": "es5",
     "declaration": true,
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "lib": ["DOM", "ES2017", "ScriptHost"]
